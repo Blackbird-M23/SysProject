@@ -24,8 +24,6 @@ import BuyScreen from "../screens/BuyScreen";
 import ProductDetailsScreen from "../screens/ProductDetailsScreen";
 import ResearchScreen from "../screens/ResearchScreen";
 import ForumScreen from "../screens/ForumScreen";
-import PaymentWebView from '../screens/PaymentWebView';
-import PaymentSuccess from '../screens/PaymentSuccess';
 import AddressEditScreen from '../screens/AddressEditScreen';
 
 
