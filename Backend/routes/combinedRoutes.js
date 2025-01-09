@@ -14,6 +14,19 @@ router.post('/resend-verification', AuthController.resendVerification);
 
 // User routes
 // router.get('/profile', UserController.getProfile);
-router.get('/profile', authMiddleware, UserController.getProfile);
+router.get('/profile', authMiddleware, UserController.getProfile);             
+
+// Update Address
+// router.put('/profile/address', authMiddleware, userController.updateAddress);
+// payment Routes 
+// const paymentController = require('../controllers/paymentController');
+
+// router.post('/init-payment', paymentController.initPayment);
+// router.post('/payment/success', paymentController.paymentSuccess);
+// router.post('/payment/fail', paymentController.paymentFail);
+// router.post('/payment/cancel', paymentController.paymentCancel);
+
+
+
 
 module.exports = router;

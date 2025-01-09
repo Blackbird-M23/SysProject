@@ -8,9 +8,10 @@ import {
   StyleSheet,
   Alert,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Correct import
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useNavigation } from "@react-navigation/native";
-import logInImage from "../assets/login.jpg"; // <-- Adjust this import to your actual file
+import logInImage from "../assets/login.jpg"; // Adjust this import to your actual file
 import api from "../services/api";
 
 const LoginScreen = () => {
@@ -19,55 +20,40 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  // const handleLogin = async () => {
-  //   try {
-  //     const user = {
-  //       email: email,
-  //       password: password,
-  //     };
-
-  //     const response = await api.post("/login", user);
-
-  //     if (response.status === 200) {
-  //       Alert.alert("Success", "User logged in.");
-  //       setEmail("");
-  //       setPassword("");
-  //       navigation.replace("Main");
-  //     } else {
-  //       Alert.alert("Error", response.data.msg || "Invalid credentials.");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     Alert.alert("Error", "An error occurred while logging in.");
-  //   }
-  // };
   const handleLogin = async () => {
     try {
       const user = {
         email: email,
         password: password,
       };
-  
+
       const response = await api.post("/login", user);
-  
-      if (response.status === 200 && response.data.success) { // use if (response.data.success) { if gives error
+
+      if (response.status === 200 && response.data.success) {
         // Login successful
         Alert.alert("Success", response.data.message || "User logged in.");
-  
-        // Optionally store the token if needed for authentication
+
         const token = response.data.token;
-        await AsyncStorage.setItem("token", token); // Save token to AsyncStorage
-  
+
+        // Save token to AsyncStorage
+        try {
+          await AsyncStorage.setItem("token", token);
+          console.log("Token saved to AsyncStorage.");
+        } catch (error) {
+          console.error("Error saving token to AsyncStorage:", error);
+          Alert.alert("Error", "Unable to save login session. Please try again.");
+        }
+
         // Reset input fields
         setEmail("");
         setPassword("");
-  
+
         // Navigate to Home or Main screen
         navigation.replace("Main");
       }
     } catch (error) {
       console.error(error);
-  
+
       // Handle specific error codes
       if (error.response) {
         if (error.response.status === 403) {
@@ -80,12 +66,11 @@ const LoginScreen = () => {
           Alert.alert("Error", error.response.data.message || "An unexpected error occurred. Please try again.");
         }
       } else {
-        // General error
         Alert.alert("Error", "Unable to connect to the server. Please try again later.");
       }
     }
   };
-  
+
   const handleForgotPassword = () => {
     console.log("Navigating to Forgot Password screen...");
   };

@@ -23,8 +23,8 @@ const userSchema = new mongoose.Schema({
         match: [/^(\+?\d{1,3}|\d{1,4})?\d{6,14}$/, 'Please use a valid phone number.']
     },
     address:{
-        houseNo: String,
-        street: String,
+        houseNo: { type: String, default: '' },
+        street: { type: String, default: '' },
         city: { 
             type: String,
             required: true
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         },
-        postalCode: String
+        postalCode: { type: String, default: '' }
     },  
     photo: {
         type: String,

@@ -64,8 +64,10 @@ module.exports = (req, res, next) => {
 
     // Attach the decoded payload (user data) to req.user for further use
     req.user = decoded;
+    console.log(req.user);
     next();
   } catch (error) {
+    console.log('errorrrr', error);
     return res.status(401).json({
       success: false,
       message: 'Invalid token'

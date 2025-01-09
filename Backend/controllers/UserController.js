@@ -11,6 +11,8 @@ module.exports = {
       // req.user was attached by the authMiddleware
       const userId = req.user.id;
 
+      console.log('userId', userId);
+
       const user = await User.findById(userId).select('-password'); 
       // Omit the password field (for security)
 
@@ -20,7 +22,7 @@ module.exports = {
           message: 'User not found'
         });
       }
-
+      console.log('user', user);
       return res.status(200).json({
         success: true,
         data: user
@@ -33,5 +35,8 @@ module.exports = {
         error: error.message
       });
     }
-  }
+  },
+  // Update Address
+  
+  
 };

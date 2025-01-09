@@ -323,7 +323,6 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, StatusBar,
 import React from 'react'
 import { MaterialIcons } from "@expo/vector-icons"; // For icons
 import { useState, useEffect } from "react";
-// import axios from "axios";
 import ServiceCard from "../components/ServiceCard";
 import { useNavigation } from "@react-navigation/native";
 
@@ -363,29 +362,7 @@ function HomeScreen() {
           <Text style={styles.pageTitle}>হোম</Text>
         </View> */}
 
-        {/* Highlight Section */}
-        {/* <View style={styles.highlight}> */}
-          {/* <View style={styles.checkImage}> */}
-          {/* <Image
-            style={styles.image}
-            source={require('../assets/rice.jpg')}
-          />
-          <Text style={styles.title}>এমএসআরআই</Text>
-          <Text style={styles.description}>
-            এম এস আর আই / হাইব্রিড পদ্ধতিতে ধান চাষ, খরচ কম, ফলন বেশি, সুখে থাকি ...
-          </Text> */}
-          {/* </View> */}
-
-          {/* <View style={styles.highlightText}>
-            <Text style={styles.title}>এমএসআরআই</Text>
-            <Text style={styles.description}>
-              এম এস আর আই / হাইব্রিড পদ্ধতিতে ধান চাষ, খরচ কম, ফলন বেশি, সুখে থাকি ...
-            </Text>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>বিস্তারিত</Text>
-            </TouchableOpacity>
-          </View> */}
-        {/* </View> */}
+       
         <TouchableOpacity
           style={styles.weatherCard}
           onPress={() =>
@@ -421,7 +398,7 @@ function HomeScreen() {
         </View> */}
         <View style={styles.services}>
           <View style={styles.serviceRow}>
-            <ServiceCard iconName="post" title="Add Post" screenName="CreatePost" />
+            <ServiceCard iconName="post-add" title="Add Post" screenName="CreatePost" />
             {/* <ServiceCard iconName="person-outline" title="কৃষি পরামর্শ" screenName="AdviceScreen" /> */}
             <ServiceCard iconName="key" title="ভাড়া" screenName="RentScreen" />
           </View>
